@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      input[type=submit]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>IT Helpdesk Ticket Management System</h2>
+    <form onsubmit="createTicket(); return false;">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email">
+
+      <label for="problem_description">Problem Description:</label>
+      <input type="text" id="problem_description" name="problem_description">
+
+      <input type="submit" value="Create Ticket">
+    </form>
+
+    <h2>List of Tickets</h2>
+    <table id="ticket_list">
+      <tr>
+        <th>Ticket ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Problem Description</th>
+      </tr>
+    </table>
+
+    <script>
+      var ticketCounter = 0;
+      var ticketList = document.getElementById("ticket_list");
+
+      function createTicket() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var problem_description = document.getElementById("problem_description").value;
+
+        var row = ticketList.insertRow(-1);
+        var ticketIdCell = row.insertCell(0);
+        var nameCell = row.insertCell(1);
+        var emailCell = row.insertCell(2);
+        var problemDescriptionCell = row.insertCell(3);
+
+        ticketIdCell.innerHTML = ++ticketCounter;
+        nameCell.innerHTML = name;
+        emailCell.innerHTML = email;
+        problemDescriptionCell.innerHTML = problem_description;
+      }
+    </script>
+  </body>
+</html>
